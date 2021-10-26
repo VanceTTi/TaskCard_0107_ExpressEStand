@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script src="js/jquery2.1.4.js"></script>
+        <script src="layer/layer.js"></script>
+        <script>
+            function msgTest(){
+                // layer.msg("提示的文字");
+                layer.msg("提示的文字",function (){
+                    //关闭时执行
+                    //加了这个之后会有抖动的效果。
+                })
+            }
+            function loadTest(){
+                /*
+                 *填上不同的数字有不同的效果
+                 *返回弹出层的id
+                 */
+                var windowId = layer.load(0);//0-16
+
+                setTimeout(function (){//两秒后执行方法体内的语句
+                    //可以通过窗口的id，关闭窗口
+                    layer.close(windowId);
+                },2000);//也就是2s后关闭窗口
+            }
+
+            function msg_loadTest(){
+                //提示的文字，{转圈效果，消失时间}
+                layer.msg("提示的文字",{icon:16,shade:0.01});
+            }
+
+            function alertTest() {
+                layer.alert("文字内容",{icon:10});
+            }
+            function tipsTest() {
+                layer.tips("这里有秘密","#s1",{tipsMore:true,tips:1})
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="msgTest()">msg函数(重点)</button>
+        <button onclick="loadTest()">laod函数(重点)</button>
+        <button onclick="msg_loadTest()">msg函数(laod效果)</button>
+        <button onclick="alertTest()">alert函数</button>
+        <button onclick="tipsTest()">tips函数</button>
+        <p>
+            这是<span id="s1">tips</span>测试函数
+        </p>
+    </body>
+</html>
